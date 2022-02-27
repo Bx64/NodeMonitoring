@@ -85,7 +85,7 @@ https://api.telegram.org/bot<token>/getUpdates
 git clone https://github.com/Bx64/NodeMonitoring.git
 ```
 
-2. Edit 'Custom variables' in `dpos_node_telegram.conf`. You should **at least** change the values of `DPOS_NODE_IP`, `HOSTNAME`, `API_PORT`, `TOKEN` and `CHAT_ID`.
+2. Edit 'Custom variables' in `dpos_node_telegram.conf`. You should **at least** change the values of `DPOS_NODE_IP`, `HOSTNAME`, `API_PORT`, `TOKEN` and `CHAT_ID`. You can choose which process you want monitored under `# Process check` by setting `true` or `false`.
 
 ```
 cd NodeMonitoring
@@ -103,6 +103,11 @@ HOSTNAME="hostname or description"
 API_PORT=1-65535
 LOOPBACK=127.0.0.1
 
+# Process check
+RELAY=true
+FORGER=true
+CORE=false
+
 # Telegram bot settings
 TOKEN=59999999999:AAAAAAAAAAAAAAAAAAk
 CHAT_ID=9999999999
@@ -112,6 +117,7 @@ TELEGRAM_URL="https://api.telegram.org/bot$TOKEN/sendMessage"
 SEND_ALERT_FLAG_API=true
 SEND_ALERT_FLAG_CLI1=true
 SEND_ALERT_FLAG_CLI2=true
+SEND_ALERT_FLAG_CLI3=true
 SEND_ALERT_FLAG_SW=true
 SEND_ALERT_FLAG_CPU=true
 SEND_ALERT_FLAG_HDD=true
@@ -128,6 +134,7 @@ MAX_BLOCKS_BEHIND=5
 FILE_API=/tmp/check_DPOS_Node_API_telegram
 FILE_CLI1=/tmp/check_DPOS_Node_CLI1_telegram
 FILE_CLI2=/tmp/check_DPOS_Node_CLI2_telegram
+FILE_CLI3=/tmp/check_DPOS_Node_CLI3_telegram
 FILE_CPU=/tmp/check_DPOS_Node_CPU_discord
 FILE_SW=/tmp/check_DPOS_Node_SW_telegram
 FILE_HDD=/tmp/check_DPOS_Node_HDD_telegram
@@ -232,7 +239,7 @@ Create a Discord server with dedicated channel for the bot using a webhook:
 git clone https://github.com/Bx64/NodeMonitoring.git
 ```
 
-2. Edit 'Custom variables' in `dpos_node_discord.conf`. You should **at least** change the values of `DPOS_NODE_IP`, `HOSTNAME` and `API_PORT`. If you did not clone the repository in your home directory, make sure to also change `DISCORD` and line 13 in the monitoring script.
+2. Edit 'Custom variables' in `dpos_node_discord.conf`. You should **at least** change the values of `DPOS_NODE_IP`, `HOSTNAME` and `API_PORT`. You can choose which process you want monitored under `# Process check` by setting `true` or `false`. If you did not clone the repository in your home directory, make sure to also change `DISCORD` and line 13 in the monitoring script.
 
 ```
 cd NodeMonitoring
@@ -250,6 +257,11 @@ HOSTNAME="hostname or description"
 API_PORT=1-65535
 LOOPBACK=127.0.0.1
 
+# Process check
+RELAY=true
+FORGER=true
+CORE=false
+
 # Discord script settings
 DISCORD=~/NodeMonitoring/discord.sh
 
@@ -257,6 +269,7 @@ DISCORD=~/NodeMonitoring/discord.sh
 SEND_ALERT_FLAG_API=true
 SEND_ALERT_FLAG_CLI1=true
 SEND_ALERT_FLAG_CLI2=true
+SEND_ALERT_FLAG_CLI3=true
 SEND_ALERT_FLAG_SW=true
 SEND_ALERT_FLAG_CPU=true
 SEND_ALERT_FLAG_HDD=true
@@ -273,6 +286,7 @@ MAX_BLOCKS_BEHIND=5
 FILE_API=/tmp/check_DPOS_Node_API_discord
 FILE_CLI1=/tmp/check_DPOS_Node_CLI1_discord
 FILE_CLI2=/tmp/check_DPOS_Node_CLI2_discord
+FILE_CLI3=/tmp/check_DPOS_Node_CLI3_discord
 FILE_CPU=/tmp/check_DPOS_Node_CPU_discord
 FILE_SW=/tmp/check_DPOS_Node_SW_discord
 FILE_HDD=/tmp/check_DPOS_Node_HDD_discord

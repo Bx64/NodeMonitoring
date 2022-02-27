@@ -90,6 +90,32 @@ function check_alert_count_cli2
     esac
 }
 
+# CLI3: check alert count (core)
+#
+
+function check_alert_count_cli3
+{
+    if [ ! -f "$FILE_CLI3" ] ; then
+        echo "1" > $FILE_CLI3
+        COUNTER=$(cat $FILE_CLI3)
+    else
+        echo $(( $(cat $FILE_CLI3) + 1 ))> $FILE_CLI3
+        COUNTER=$(cat $FILE_CLI3)
+    fi
+    case $COUNTER in
+        1) SEND_ALERT_FLAG_CLI3=true ;;
+        5) SEND_ALERT_FLAG_CLI3=true ;;
+        15) SEND_ALERT_FLAG_CLI3=true ;;
+        30) SEND_ALERT_FLAG_CLI3=true ;;
+        60) SEND_ALERT_FLAG_CLI3=true ;;
+        120) SEND_ALERT_FLAG_CLI3=true ;;
+        360) SEND_ALERT_FLAG_CLI3=true ;;
+        720) SEND_ALERT_FLAG_CLI3=true ;;
+        1440) SEND_ALERT_FLAG_CLI3=true ;;
+        *)  SEND_ALERT_FLAG_CLI3=false ;;
+    esac
+}
+
 # Latency: check alert count
 #
 
@@ -246,6 +272,17 @@ function discord_send_cli2
     fi
 }
 
+# Discord CLI3 check (core) - send notification
+#
+
+function discord_send_cli3
+{
+    if [ "$SEND_ALERT_FLAG_CLI3" = true ] ; then
+        echo " >>>>: sending $MESSAGE"
+        $DISCORD --text "$MESSAGE"
+    fi
+}
+
 # Discord API test, alive/health check & latency - send notification
 #
 
@@ -327,40 +364,71 @@ fi
 
 # Relay process
 
-if /home/ark/ark-core/packages/core/bin/run $@ --token=ark relay:status | grep online >/dev/null ; then
-    if [ -f "$FILE_CLI1" ] ; then
-        echo "$FILE_CLI1 exists."
-        MESSAGE="$(date) - [INFO] [ALERT RELAY RESOLVED] ARK node $HOSTNAME relay process is online again!"
-        rm $FILE_CLI1
-        SEND_ALERT_FLAG_CLI1=true
-        discord_send_cli1
+if $RELAY == true ; then
+    if /home/ark/ark-core/packages/core/bin/run $@ --token=ark relay:status | grep online >/dev/null ; then
+        if [ -f "$FILE_CLI1" ] ; then
+            echo "$FILE_CLI1 exists."
+            MESSAGE="$(date) - [INFO] [ALERT RELAY RESOLVED] ARK node $HOSTNAME relay process is online again!"
+            rm $FILE_CLI1
+            SEND_ALERT_FLAG_CLI1=true
+            discord_send_cli1
+        else
+            echo " >>>> : ARK node $HOSTNAME relay process is online!"
+        fi
     else
-        echo " >>>> : ARK node $HOSTNAME relay process is online!"
+        check_alert_count_cli1
+        MESSAGE="$(date) - [CRITICAL] [ALERT RELAY] ARK node relay process is not online! #count:$COUNTER - hostname=$HOSTNAME"
+        echo " >>>> : $MESSAGE"
+        discord_send_cli1
     fi
 else
-    check_alert_count_cli1
-    MESSAGE="$(date) - [CRITICAL] [ALERT RELAY] ARK node relay process is not online! #count:$COUNTER - hostname=$HOSTNAME"
-    echo " >>>> : $MESSAGE"
-    discord_send_cli1
+    echo " >>>> : Skipping relay process check."
 fi
 
 # Forger process
 
-if /home/ark/ark-core/packages/core/bin/run $@ --token=ark forger:status | grep online >/dev/null ; then
-    if [ -f "$FILE_CLI2" ] ; then
-        echo "$FILE_CLI2 exists."
-        MESSAGE="$(date) - [INFO] [ALERT FORGER RESOLVED] ARK node $HOSTNAME forger process is online again!"
-        rm $FILE_CLI2
-        SEND_ALERT_FLAG_CLI2=true
-        discord_send_cli2
+if $FORGER == true ; then
+    if /home/ark/ark-core/packages/core/bin/run $@ --token=ark forger:status | grep online >/dev/null ; then
+        if [ -f "$FILE_CLI2" ] ; then
+            echo "$FILE_CLI2 exists."
+            MESSAGE="$(date) - [INFO] [ALERT FORGER RESOLVED] ARK node $HOSTNAME forger process is online again!"
+            rm $FILE_CLI2
+            SEND_ALERT_FLAG_CLI2=true
+            discord_send_cli2
+        else
+            echo " >>>> : ARK node $HOSTNAME forger process is online!"
+        fi
     else
-        echo " >>>> : ARK node $HOSTNAME forger process is online!"
+        check_alert_count_cli2
+        MESSAGE="$(date) - [CRITICAL] [ALERT FORGER] ARK node forger process is not online! #count:$COUNTER - hostname=$HOSTNAME"
+        echo " >>>> : $MESSAGE"
+        discord_send_cli2
     fi
 else
-    check_alert_count_cli2
-    MESSAGE="$(date) - [CRITICAL] [ALERT FORGER] ARK node forger process is not online! #count:$COUNTER - hostname=$HOSTNAME"
-    echo " >>>> : $MESSAGE"
-    discord_send_cli2
+    echo " >>>> : Skipping forger process check."
+fi
+
+# Core process
+
+if $CORE == true ; then
+    if /home/ark/ark-core/packages/core/bin/run $@ --token=ark core:status | grep online >/dev/null ; then
+        if [ -f "$FILE_CLI3" ] ; then
+            echo "$FILE_CLI3 exists."
+            MESSAGE="$(date) - [INFO] [ALERT CORE RESOLVED] ARK node $HOSTNAME core process is online again!"
+            rm $FILE_CLI3
+            SEND_ALERT_FLAG_CLI3=true
+            discord_send_cli3
+        else
+            echo " >>>> : ARK node $HOSTNAME core process is online!"
+        fi
+    else
+        check_alert_count_cli3
+        MESSAGE="$(date) - [CRITICAL] [ALERT CORE] ARK node core process is not online! #count:$COUNTER - hostname=$HOSTNAME"
+        echo " >>>> : $MESSAGE"
+        discord_send_cli3
+    fi
+else
+    echo " >>>> : Skipping core process check."
 fi
 
 # Health status check with API call
