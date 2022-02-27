@@ -51,16 +51,16 @@ function check_alert_count_cli1
         COUNTER=$(cat $FILE_CLI1)
     fi
     case $COUNTER in
-      1) SEND_ALERT_FLAG_CLI1=true ;;
-      5) SEND_ALERT_FLAG_CLI1=true ;;
-      15) SEND_ALERT_FLAG_CLI1=true ;;
-      30) SEND_ALERT_FLAG_CLI1=true ;;
-      60) SEND_ALERT_FLAG_CLI1=true ;;
-      120) SEND_ALERT_FLAG_CLI1=true ;;
-      360) SEND_ALERT_FLAG_CLI1=true ;;
-      720) SEND_ALERT_FLAG_CLI1=true ;;
-      1440) SEND_ALERT_FLAG_CLI1=true ;;
-      *)  SEND_ALERT_FLAG_CLI1=false ;;
+        1) SEND_ALERT_FLAG_CLI1=true ;;
+        5) SEND_ALERT_FLAG_CLI1=true ;;
+        15) SEND_ALERT_FLAG_CLI1=true ;;
+        30) SEND_ALERT_FLAG_CLI1=true ;;
+        60) SEND_ALERT_FLAG_CLI1=true ;;
+        120) SEND_ALERT_FLAG_CLI1=true ;;
+        360) SEND_ALERT_FLAG_CLI1=true ;;
+        720) SEND_ALERT_FLAG_CLI1=true ;;
+        1440) SEND_ALERT_FLAG_CLI1=true ;;
+        *)  SEND_ALERT_FLAG_CLI1=false ;;
     esac
 }
 
@@ -77,16 +77,16 @@ function check_alert_count_cli2
         COUNTER=$(cat $FILE_CLI2)
     fi
     case $COUNTER in
-      1) SEND_ALERT_FLAG_CLI2=true ;;
-      5) SEND_ALERT_FLAG_CLI2=true ;;
-      15) SEND_ALERT_FLAG_CLI2=true ;;
-      30) SEND_ALERT_FLAG_CLI2=true ;;
-      60) SEND_ALERT_FLAG_CLI2=true ;;
-      120) SEND_ALERT_FLAG_CLI2=true ;;
-      360) SEND_ALERT_FLAG_CLI2=true ;;
-      720) SEND_ALERT_FLAG_CLI2=true ;;
-      1440) SEND_ALERT_FLAG_CLI2=true ;;
-      *)  SEND_ALERT_FLAG_CLI2=false ;;
+        1) SEND_ALERT_FLAG_CLI2=true ;;
+        5) SEND_ALERT_FLAG_CLI2=true ;;
+        15) SEND_ALERT_FLAG_CLI2=true ;;
+        30) SEND_ALERT_FLAG_CLI2=true ;;
+        60) SEND_ALERT_FLAG_CLI2=true ;;
+        120) SEND_ALERT_FLAG_CLI2=true ;;
+        360) SEND_ALERT_FLAG_CLI2=true ;;
+        720) SEND_ALERT_FLAG_CLI2=true ;;
+        1440) SEND_ALERT_FLAG_CLI2=true ;;
+        *)  SEND_ALERT_FLAG_CLI2=false ;;
     esac
 }
 
@@ -103,16 +103,16 @@ function check_alert_count_api
         COUNTER=$(cat $FILE_API)
     fi
     case $COUNTER in
-      1) SEND_ALERT_FLAG_API=true ;;
-      5) SEND_ALERT_FLAG_API=true ;;
-      15) SEND_ALERT_FLAG_API=true ;;
-      30) SEND_ALERT_FLAG_API=true ;;
-      60) SEND_ALERT_FLAG_API=true ;;
-      120) SEND_ALERT_FLAG_API=true ;;
-      360) SEND_ALERT_FLAG_API=true ;;
-      720) SEND_ALERT_FLAG_API=true ;;
-      1440) SEND_ALERT_FLAG_API=true ;;
-      *)  SEND_ALERT_FLAG_API=false ;;
+        1) SEND_ALERT_FLAG_API=true ;;
+        5) SEND_ALERT_FLAG_API=true ;;
+        15) SEND_ALERT_FLAG_API=true ;;
+        30) SEND_ALERT_FLAG_API=true ;;
+        60) SEND_ALERT_FLAG_API=true ;;
+        120) SEND_ALERT_FLAG_API=true ;;
+        360) SEND_ALERT_FLAG_API=true ;;
+        720) SEND_ALERT_FLAG_API=true ;;
+        1440) SEND_ALERT_FLAG_API=true ;;
+        *)  SEND_ALERT_FLAG_API=false ;;
     esac
 }
 
@@ -130,16 +130,16 @@ function check_alert_count_cpu
     fi
 
     case $COUNTER_CPU in
-      1) SEND_ALERT_FLAG_CPU=true ;;
-      5) SEND_ALERT_FLAG_CPU=true ;;
-      15) SEND_ALERT_FLAG_CPU=true ;;
-      30) SEND_ALERT_FLAG_CPU=true ;;
-      60) SEND_ALERT_FLAG_CPU=true ;;
-      120) SEND_ALERT_FLAG_CPU=true ;;
-      360) SEND_ALERT_FLAG_CPU=true ;;
-      720) SEND_ALERT_FLAG_CPU=true ;;
-      1440) SEND_ALERT_FLAG_CPU=true ;;
-      *)  SEND_ALERT_FLAG_CPU=false ;;
+        1) SEND_ALERT_FLAG_CPU=true ;;
+        5) SEND_ALERT_FLAG_CPU=true ;;
+        15) SEND_ALERT_FLAG_CPU=true ;;
+        30) SEND_ALERT_FLAG_CPU=true ;;
+        60) SEND_ALERT_FLAG_CPU=true ;;
+        120) SEND_ALERT_FLAG_CPU=true ;;
+        360) SEND_ALERT_FLAG_CPU=true ;;
+        720) SEND_ALERT_FLAG_CPU=true ;;
+        1440) SEND_ALERT_FLAG_CPU=true ;;
+        *)  SEND_ALERT_FLAG_CPU=false ;;
     esac
 }
 
@@ -157,16 +157,16 @@ function check_alert_count_hdd
     fi
 
     case $COUNTER_HDD in
-      1) SEND_ALERT_FLAG_HDD=true ;;
-      5) SEND_ALERT_FLAG_HDD=true ;;
-      15) SEND_ALERT_FLAG_HDD=true ;;
-      30) SEND_ALERT_FLAG_HDD=true ;;
-      60) SEND_ALERT_FLAG_HDD=true ;;
-      120) SEND_ALERT_FLAG_HDD=true ;;
-      360) SEND_ALERT_FLAG_HDD=true ;;
-      720) SEND_ALERT_FLAG_HDD=true ;;
-      1440) SEND_ALERT_FLAG_HDD=true ;;
-      *)  SEND_ALERT_FLAG_HDD=false ;;
+        1) SEND_ALERT_FLAG_HDD=true ;;
+        5) SEND_ALERT_FLAG_HDD=true ;;
+        15) SEND_ALERT_FLAG_HDD=true ;;
+        30) SEND_ALERT_FLAG_HDD=true ;;
+        60) SEND_ALERT_FLAG_HDD=true ;;
+        120) SEND_ALERT_FLAG_HDD=true ;;
+        360) SEND_ALERT_FLAG_HDD=true ;;
+        720) SEND_ALERT_FLAG_HDD=true ;;
+        1440) SEND_ALERT_FLAG_HDD=true ;;
+        *)  SEND_ALERT_FLAG_HDD=false ;;
     esac
 }
 
@@ -184,16 +184,16 @@ function check_alert_count_sw
     fi
 
     case $COUNTER_SW in
-      1) SEND_ALERT_FLAG_SW=true ;;
-      5) SEND_ALERT_FLAG_SW=true ;;
-      15) SEND_ALERT_FLAG_SW=true ;;
-      30) SEND_ALERT_FLAG_SW=true ;;
-      60) SEND_ALERT_FLAG_SW=true ;;
-      120) SEND_ALERT_FLAG_SW=true ;;
-      360) SEND_ALERT_FLAG_SW=true ;;
-      720) SEND_ALERT_FLAG_SW=true ;;
-      1440) SEND_ALERT_FLAG_SW=true ;;
-      *)  SEND_ALERT_FLAG_SW=false ;;
+        1) SEND_ALERT_FLAG_SW=true ;;
+        5) SEND_ALERT_FLAG_SW=true ;;
+        15) SEND_ALERT_FLAG_SW=true ;;
+        30) SEND_ALERT_FLAG_SW=true ;;
+        60) SEND_ALERT_FLAG_SW=true ;;
+        120) SEND_ALERT_FLAG_SW=true ;;
+        360) SEND_ALERT_FLAG_SW=true ;;
+        720) SEND_ALERT_FLAG_SW=true ;;
+        1440) SEND_ALERT_FLAG_SW=true ;;
+        *)  SEND_ALERT_FLAG_SW=false ;;
     esac
 }
 
@@ -211,16 +211,16 @@ function check_alert_count_blocks
     fi
 
     case $COUNTER_BLOCKS in
-      1) SEND_ALERT_FLAG_BLOCKS=true ;;
-      5) SEND_ALERT_FLAG_BLOCKS=true ;;
-      15) SEND_ALERT_FLAG_BLOCKS=true ;;
-      30) SEND_ALERT_FLAG_BLOCKS=true ;;
-      60) SEND_ALERT_FLAG_BLOCKS=true ;;
-      120) SEND_ALERT_FLAG_BLOCKS=true ;;
-      360) SEND_ALERT_FLAG_BLOCKS=true ;;
-      720) SEND_ALERT_FLAG_BLOCKS=true ;;
-      1440) SEND_ALERT_FLAG_BLOCKS=true ;;
-      *)  SEND_ALERT_FLAG_BLOCKS=false ;;
+        1) SEND_ALERT_FLAG_BLOCKS=true ;;
+        5) SEND_ALERT_FLAG_BLOCKS=true ;;
+        15) SEND_ALERT_FLAG_BLOCKS=true ;;
+        30) SEND_ALERT_FLAG_BLOCKS=true ;;
+        60) SEND_ALERT_FLAG_BLOCKS=true ;;
+        120) SEND_ALERT_FLAG_BLOCKS=true ;;
+        360) SEND_ALERT_FLAG_BLOCKS=true ;;
+        720) SEND_ALERT_FLAG_BLOCKS=true ;;
+        1440) SEND_ALERT_FLAG_BLOCKS=true ;;
+        *)  SEND_ALERT_FLAG_BLOCKS=false ;;
     esac
 }
 
@@ -335,7 +335,7 @@ if /home/ark/ark-core/packages/core/bin/run $@ --token=ark relay:status | grep o
         SEND_ALERT_FLAG_CLI1=true
         discord_send_cli1
     else
-	    echo " >>>> : ARK node $HOSTNAME relay process is online!"
+        echo " >>>> : ARK node $HOSTNAME relay process is online!"
     fi
 else
     check_alert_count_cli1
@@ -354,7 +354,7 @@ if /home/ark/ark-core/packages/core/bin/run $@ --token=ark forger:status | grep 
         SEND_ALERT_FLAG_CLI2=true
         discord_send_cli2
     else
-	    echo " >>>> : ARK node $HOSTNAME forger process is online!"
+        echo " >>>> : ARK node $HOSTNAME forger process is online!"
     fi
 else
     check_alert_count_cli2
