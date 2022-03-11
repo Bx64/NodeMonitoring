@@ -147,26 +147,30 @@ FILE_BLOCKS=/tmp/check_DPOS_Node_Blocks_telegram
 Save and exit (CTRL+X / Y / ENTER)
 ```
 
-3. Make the monitoring script executable with one of the following commands:
-
-```
-chmod +x ark_mon_telegram.sh
-```
-```
-chmod +x solar_mon_telegram.sh
-```
-
-4. Install the required `sar` and `jq` packages for the monitor script:
+3. Install the required `sar` and `jq` packages for the monitor script:
 
 ```
 sudo apt install sysstat && sudo apt-get install jq -y
 ```
 
+4. Make the monitoring script executable with one of the following commands:
+
+*- In case you are using ARK:*
+```
+chmod +x ark_mon_telegram.sh
+```
+*- In case you are using SXP:*
+```
+chmod +x solar_mon_telegram.sh
+```
+
 5. Use one of the following commands to test your monitor script integration, you should receive a test message at your Telegram channel:
 
+*- In case you are using ARK:*
 ```
 ./ark_mon_telegram.sh test
 ```
+*- In case you are using SXP:*
 ```
 ./solar_mon_telegram.sh test
 ```
@@ -179,11 +183,13 @@ EDITOR=nano crontab -e
 
 And paste one of the following sets of three lines at the bottom, to monitor your node every 1 minute, and to remove the logs once per day. The output of each run will be appended to the logfile each time so you do not lose any information on subsequent runs. Alternatively, you can choose a different timing for each of the commands (check [crontab.guru](crontab.guru)).
 
+*- In case you are using ARK:*
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 */1 * * * * ~/NodeMonitoring/ark_mon_telegram.sh >> ~/NodeMonitoring/ark_mon_telegram.log 2>&1
 0 0 * * * cd ~/NodeMonitoring && rm ark_mon_telegram.log 2>&1
 ```
+*- In case you are using SXP:*
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 */1 * * * * ~/NodeMonitoring/solar_mon_telegram.sh >> ~/NodeMonitoring/solar_mon_telegram.log 2>&1
@@ -299,13 +305,10 @@ FILE_BLOCKS=/tmp/check_DPOS_Node_Blocks_discord
 Save and exit (CTRL+X / Y / ENTER)
 ```
 
-3. Make the monitoring script executable with one of the following commands:
+3. Install the required `sar` and `jq` packages for your monitoring script:
 
 ```
-chmod +x ark_mon_discord.sh
-```
-```
-chmod +x solar_mon_discord.sh
+sudo apt install sysstat && sudo apt-get install jq -y
 ```
 
 4. The monitoring script uses a `discord.sh` script for sending messages, more information on this script can be found [after these instructions](#extra-information).
@@ -332,17 +335,24 @@ nano .webhook
 ./discord.sh --text "Test Message"
 ```
 
-7. Install the required `sar` and `jq` packages for your monitoring script:
+7. Make the monitoring script executable with one of the following commands:
 
+*- In case you are using ARK:*
 ```
-sudo apt install sysstat && sudo apt-get install jq -y
+chmod +x ark_mon_discord.sh
+```
+*- In case you are using SXP:*
+```
+chmod +x solar_mon_discord.sh
 ```
 
 8. Use one of the following commands to test your monitoring script integration with `discord.sh`, you should receive a test message at your Discord server:
 
+*- In case you are using ARK:*
 ```
 ./ark_mon_discord.sh test
 ```
+*- In case you are using SXP:*
 ```
 ./solar_mon_discord.sh test
 ```
@@ -355,11 +365,13 @@ EDITOR=nano crontab -e
 
 And paste one of the following sets of three lines at the bottom, to monitor your node every 1 minute, and to remove the logs once per day. The output of each run will be appended to the logfile each time so you do not lose any information on subsequent runs. Alternatively, you can choose a different timing for each of the commands (check [crontab.guru](crontab.guru)).
 
+*- In case you are using ARK:*
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 */1 * * * * ~/NodeMonitoring/ark_mon_discord.sh >> ~/NodeMonitoring/ark_mon_discord.log 2>&1
 0 0 * * * cd ~/NodeMonitoring && rm ark_mon_discord.log 2>&1
 ```
+*- In case you are using SXP:*
 ```
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 */1 * * * * ~/NodeMonitoring/solar_mon_discord.sh >> ~/NodeMonitoring/solar_mon_discord.log 2>&1
