@@ -434,7 +434,7 @@ fi
 # Health status check with API call
 #
 
-HTTP_CODE=$(curl -s -w '%{http_code}' --connect-timeout 5 --max-time 10 -o /dev/null http://dapi.solar.network/api/peers/$DPOS_NODE_IP)
+HTTP_CODE=$(curl -s -w '%{http_code}' --connect-timeout 5 --max-time 10 -o /dev/null http://sxp.mainnet.sh/api/peers/$DPOS_NODE_IP)
 CURL_STATUS=$?
 
 echo " >>>> : $(date)"
@@ -456,7 +456,7 @@ if [ "$CURL_STATUS" -eq 0 ] ; then
     else
         echo " >>>> : SXP node $HOSTNAME is found in API call!"
 
-        STATUS_HEALTHY=$(curl -sS --max-time 50 --retry 20 --retry-delay 2 --retry-max-time 40 http://dapi.solar.network/api/peers/$DPOS_NODE_IP | jq -r '.data.latency')
+        STATUS_HEALTHY=$(curl -sS --max-time 50 --retry 20 --retry-delay 2 --retry-max-time 40 http://sxp.mainnet.sh/api/peers/$DPOS_NODE_IP | jq -r '.data.latency')
 
         if [[ "$STATUS_HEALTHY" -lt $LATENCY_CRITICAL ]] ; then
             MESSAGE="$(date) - [INFO] SXP node is healthy! - LATENCY(ms)=$STATUS_HEALTHY hostname=$HOSTNAME"
@@ -487,7 +487,7 @@ fi
 # Compare blockheight of node with network
 #
 
-BLOCK_STATUS_SXP=$(curl -sS --max-time 40 --retry 20 --retry-delay 2 --retry-max-time 40 http://dapi.solar.network/api/blockchain | jq '.data.block.height')
+BLOCK_STATUS_SXP=$(curl -sS --max-time 40 --retry 20 --retry-delay 2 --retry-max-time 40 http://sxp.mainnet.sh/api/blockchain | jq '.data.block.height')
 BLOCK_STATUS_NODE=$(curl -sS $LOOPBACK:$API_PORT/api/blockchain | jq .'[].block.height')
 BLOCKS_BEHIND="$(($BLOCK_STATUS_SXP - $BLOCK_STATUS_NODE))"
 
