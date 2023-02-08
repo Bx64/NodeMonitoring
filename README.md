@@ -1,6 +1,6 @@
 # NodeMonitoring
 
-Scripts for monitoring your DPoS nodes and sending alarm messages via Discord webhook or Telegram bot. Forked from the adaptation of Solar delegate [mtaylan](https://github.com/mtaylan).
+Scripts for monitoring your DPoS nodes and sending alarm messages via Discord webhook or Telegram bot. Forked from the adaptation of Solar block producer [mtaylan](https://github.com/mtaylan).
 
 ## Contents
 
@@ -11,7 +11,7 @@ Scripts for monitoring your DPoS nodes and sending alarm messages via Discord we
 
 ## Introduction
 
-A script for monitoring your DPoS nodes and sending alarm messages via Discord or Telegram. Delegates can use this script for monitoring;
+A script for monitoring your DPoS nodes and sending alarm messages via Discord or Telegram. Block producers can use this script for monitoring;
 
 - If the DPoS node is not listed in peers list;
 - If the DPoS node latency is higher than defined latency value;
@@ -105,7 +105,7 @@ LOOPBACK=127.0.0.1
 
 # Process check
 RELAY=true
-FORGER=true
+PRODUCER=true
 CORE=false
 
 # Telegram bot settings
@@ -265,7 +265,7 @@ LOOPBACK=127.0.0.1
 
 # Process check
 RELAY=true
-FORGER=true
+PRODUCER=true
 CORE=false
 
 # Discord script settings

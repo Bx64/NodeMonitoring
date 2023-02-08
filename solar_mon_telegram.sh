@@ -2,7 +2,7 @@
 ##
 #
 # SXP Node check & Telegram alert script
-# Delegate BFX (@Bx64)
+# Block Producer BFX (@Bx64)
 #
 # Forked from @mtaylan
 ##
@@ -64,7 +64,7 @@ function check_alert_count_cli1
     esac
 }
 
-# CLI2: check alert count (forger)
+# CLI2: check alert count (producer)
 #
 
 function check_alert_count_cli2
@@ -261,7 +261,7 @@ function telegram_send_cli1
     fi
 }
 
-# Telegram CLI2 check (forger) - send notification
+# Telegram CLI2 check (producer) - send notification
 #
 
 function telegram_send_cli2
@@ -385,27 +385,27 @@ else
     echo " >>>> : Skipping relay process check."
 fi
 
-# Forger process
+# Producer process
 
-if $FORGER == true ; then
+if $PRODUCER == true ; then
     if /home/solar/solar-core/packages/core/bin/run $@ --token=solar forger:status | grep online >/dev/null ; then
         if [ -f "$FILE_CLI2" ] ; then
             echo "$FILE_CLI2 exists."
-            MESSAGE="$(date) - [INFO] [ALERT FORGER RESOLVED] Solar node $HOSTNAME forger process is online again!"
+            MESSAGE="$(date) - [INFO] [ALERT PRODUCER RESOLVED] Solar node $HOSTNAME producer process is online again!"
             rm $FILE_CLI2
             SEND_ALERT_FLAG_CLI2=true
             telegram_send_cli2
         else
-            echo " >>>> : Solar node $HOSTNAME forger process is online!"
+            echo " >>>> : Solar node $HOSTNAME producer process is online!"
         fi
     else
         check_alert_count_cli2
-        MESSAGE="$(date) - [CRITICAL] [ALERT FORGER] Solar node forger process is not online! #count:$COUNTER - hostname=$HOSTNAME"
+        MESSAGE="$(date) - [CRITICAL] [ALERT PRODUCER] Solar node producer process is not online! #count:$COUNTER - hostname=$HOSTNAME"
         echo " >>>> : $MESSAGE"
         telegram_send_cli2
     fi
 else
-    echo " >>>> : Skipping forger process check."
+    echo " >>>> : Skipping producer process check."
 fi
 
 # Core process
